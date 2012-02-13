@@ -25,3 +25,7 @@
 
 [push]
     default = current
+
+[core]
+	autocrlf = input
+	editor = vim

@@ -1,0 +1,37 @@
+general {
+	colors = true
+	color_good = '#42b3d8'
+	color_degraded = '#df882b'
+	color_bad = '#f61920'
+	interval = 5
+}
+
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "battery all"
+order += "volume master"
+order += "tztime local"
+
+wireless _first_ {
+	format_up = "📡 %quality %essid %ip"
+	format_down = "Wireless offline"
+}
+
+ethernet _first_ {
+	format_up = "%ip %speed"
+	format_down = "Ethernet offline"
+}
+
+battery all {
+	format = "⚡ %status (%percentage) %remaining"
+}
+
+volume master {
+	device = "pulse"
+	format = "🔉 %volume (%devicename)"
+	format_muted = "🔇 [Muted] %volume (%devicename)"
+}
+
+tztime local {
+	format = "%Y-%m-%d %H:%M:%S"
+}

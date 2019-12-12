@@ -214,7 +214,8 @@ bindsym $mod+z move workspace to output primary
 bindsym $mod+x move workspace to output HDMI-2
 bindsym $mod+c move workspace to output DP-1
 
-exec --no-startup-id nitrogen --restore
+exec --no-startup /rzurad/projects/common/set-background.sh
+exec --no-startup-id xeventbind /home/rzurad/projects/common/set-background.sh
 exec --no-startup-id compton --backend glx --paint-on-overlay --vsync opengl-swc
 exec --no-startup-id xscreensaver -nosplash
 

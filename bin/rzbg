@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+nitrogen --head=0 --set-centered /home/rzurad/projects/common/backgrounds/mass-effect-3.jpg
+nitrogen --head=1 --set-centered /home/rzurad/projects/common/backgrounds/mass-effect-3.jpg
+nitrogen --head=2 --set-centered /home/rzurad/projects/common/backgrounds/mass-effect-3.jpg

@@ -12,7 +12,6 @@ gaps inner $inner
 gaps outer $outer
 
 for_window [class="^.*"] border pixel 3
-for_window [class="FTerminal"] floating enable
 
 set $mod Mod1
 
@@ -41,7 +40,7 @@ font pango:Terminus 12px
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -53,13 +52,15 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym Print exec gnome-screenshot
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Shift+Return exec i3-sensible-terminal --class FTerminal
+bindsym $mod+Return exec rzi3shell
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -163,8 +164,21 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Set shut down, restart and locking features
+bindsym $mod+Shift+s mode "$mode_system"
+set $mode_system (l)ogout | (s)uspend | (Shift+r)eboot | (Shift+s)hutdown
+
+mode "$mode_system" {
+        bindsym l exec --no-startup-id i3-msg exit, mode "default"
+        bindsym s exec --no-startup-id rzlock && sleep 1 && systemctl suspend, mode "default"
+        bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
+        bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+
+        # exit system mode: "Enter" or "Escape"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -211,15 +225,14 @@ bar {
 
 # move workspace to RandR output (different displays)
 bindsym $mod+z move workspace to output primary
-bindsym $mod+x move workspace to output HDMI-2
-bindsym $mod+c move workspace to output DP-1
+bindsym $mod+x move workspace to output HDMI2
+bindsym $mod+c move workspace to output DP1
 
-exec --no-startup /rzurad/projects/common/set-background.sh
-exec --no-startup-id xeventbind /home/rzurad/projects/common/set-background.sh
+exec --no-startup-id rzbg
 exec --no-startup-id compton --backend glx --paint-on-overlay --vsync opengl-swc
 exec --no-startup-id xscreensaver -nosplash
 
-bindsym Control+$mod+l exec xscreensaver-command -lock
+bindsym Control+$mod+l exec rzlock
 
 #exec --no-startup-id "i3-msg 'workspace 10; append_layout /home/rzurad/.config/i3/workspace-10.json'"
 #exec --no-startup-id "i3-sensible-terminal"

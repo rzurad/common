@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+SCRIPT_PATH=${0%/*}
+if [ "$0" != "$SCRIPT_PATH" ] && [ "$SCRIPT_PATH" != "" ]; then 
+    cd $SCRIPT_PATH
+fi
+
+cp ../.config/i3/config $HOME/.config/i3/config
+cp ../.config/i3status/config $HOME/.config/i3status/config
+cp ../.config/compton.conf $HOME/.config/compton.conf
+cp ../.vimrc $HOME/.vimrc
+cp ../.profile $HOME/.profile
+cp ../.bashrc $HOME/.bashrc

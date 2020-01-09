@@ -49,6 +49,17 @@ let g:lightline = {
 
 let g:netrw_liststyle = 3
 set number
+let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {
     \ 'dir': 'node_modules'
     \ }
+
+set nomodeline
+
+noremap ; l
+noremap l k
+noremap k j
+noremap j h
+
+let g:netrw_banner = 0
+:set directory=$HOME/.vim/swapfiles//

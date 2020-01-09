@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+xrandr --output eDP-1 --primary --auto --output HDMI2 --off --output DP1 --off
+sleep 2
+rzbg

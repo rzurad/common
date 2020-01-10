@@ -224,7 +224,7 @@ bar {
 }
 
 # move workspace to RandR output (different displays)
-bindsym $mod+z move workspace to output primary
+bindsym $mod+z move workspace to output eDP1
 bindsym $mod+x move workspace to output HDMI2
 bindsym $mod+c move workspace to output DP1
 

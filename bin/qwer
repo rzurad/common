@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+nice -n 19 cmatrix -C cyan

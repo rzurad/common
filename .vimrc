@@ -51,7 +51,7 @@ let g:netrw_liststyle = 3
 set number
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {
-    \ 'dir': 'node_modules'
+    \ 'dir': 'node_modules\|git'
     \ }
 
 set nomodeline

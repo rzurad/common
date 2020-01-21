@@ -56,10 +56,10 @@ let g:ctrlp_custom_ignore = {
 
 set nomodeline
 
-noremap ; l
-noremap l k
-noremap k j
-noremap j h
+"noremap ; l
+"noremap l k
+"noremap k j
+"noremap j h
 
 let g:netrw_banner = 0
 :set directory=$HOME/.vim/swapfiles//

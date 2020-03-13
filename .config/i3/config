@@ -230,7 +230,7 @@ bindsym $mod+x move workspace to output HDMI2
 bindsym $mod+c move workspace to output DP1
 
 exec --no-startup-id rzbg
-exec --no-startup-id compton --backend glx --vsync
+exec --no-startup-id compton --backend glx
 exec --no-startup-id xscreensaver -nosplash
 
 bindsym Control+$mod+l exec rzlock
